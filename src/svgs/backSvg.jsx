@@ -1,0 +1,10 @@
+function BackSvg() {
+    return (
+        <svg width="11" height="18" viewBox="0 0 11 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 9L9 18L10.4 16.5L3 9L10.4 1.5L9 0L0 9Z" fill="#737373" />
+        </svg>
+
+    );
+}
+
+export default BackSvg;
