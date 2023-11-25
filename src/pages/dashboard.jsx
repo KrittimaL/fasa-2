@@ -10,7 +10,7 @@ function Dashboard() {
   const [cases, setCases] = useState([]);
 
   async function getCases() {
-    const response = await fetch(`http://localhost:3001/case/`);
+    const response = await fetch(`http://172.31.24.169:3001/case/`);
     if (!response.ok) {
       const message = `An error occurred: ${response.statusText}`;
       window.alert(message);
@@ -25,7 +25,7 @@ function Dashboard() {
   }, [cases.length]);
 
   async function markAsAllRead() {
-    const response = await fetch(`http://localhost:3001/allread/`);
+    const response = await fetch(`http://172.31.24.169:3001/allread/`);
     if (!response.ok) {
       const message = `An error occurred: ${response.statusText}`;
       window.alert(message);
