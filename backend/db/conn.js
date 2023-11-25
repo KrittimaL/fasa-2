@@ -1,8 +1,11 @@
 const { MongoClient } = require("mongodb");
 const Db = process.env.MONGODB_URI;
 const client = new MongoClient(Db, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
+  serverApi: {
+    version: ServerApiVersion.v1,
+    strict: true,
+    deprecationErrors: true,
+  }
 });
 
 module.exports = {
