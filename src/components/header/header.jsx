@@ -14,7 +14,7 @@ function Header() {
   const [cases, setCases] = useState([]);
 
   async function getCases() {
-    const response = await fetch(`http://localhost:3001/case/`);
+    const response = await fetch(`http://ec2-54-206-23-65.ap-southeast-2.compute.amazonaws.com:3001/case/`);
     if (!response.ok) {
       const message = `An error occurred: ${response.statusText}`;
       window.alert(message);
