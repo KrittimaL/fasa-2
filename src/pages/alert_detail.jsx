@@ -13,7 +13,7 @@ function AlertDetail() {
   // const [status, setStatus] = useState('')
 
   async function updateCase(case_id, case_data) {
-    const response = await fetch(`http://172.31.24.169:3001/update/${case_id}`, {
+    const response = await fetch(`http://ec2-54-206-23-65.ap-southeast-2.compute.amazonaws.com:3001/update/${case_id}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
