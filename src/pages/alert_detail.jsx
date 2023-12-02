@@ -43,6 +43,10 @@ function AlertDetail() {
     }
   }
 
+  function onClickRealTimeCamera(){
+    navigate(`realTime`, { state: { alertDetail: alertDetail } })
+  }
+
   useEffect(() => {
     if (alertDetail.status) {
       // setStatus("Already Checked")
@@ -104,16 +108,22 @@ function AlertDetail() {
           </div>
         </div>
         <div className="border-t-2 border-t-[#D9D9D9] w-full flex flex-col pt-4 gap-6 ">
-          <div className="w-full flex gap-3 items-center">
-            <p className="text-xl font-semibold">Location:</p>
-            <a
-              href={link}
-              target="_blank"
-              className="text-xl text-[#528FFE] underline underline-offset-2 hover:text-[#0047FF] font-semibold"
-            >
-              {alertDetail.address}
-            </a>
+          <div className="w-full flex items-center">
+            <div className="grow flex gap-3 items-center justify-start">
+              <p className="text-xl font-semibold">Location:</p>
+              <a
+                href={link}
+                target="_blank"
+                className="text-xl text-[#528FFE] underline underline-offset-2 hover:text-[#0047FF] font-semibold"
+              >
+                {alertDetail.address}
+              </a>
+            </div>
+            <div className="flex justify-end">
+              <p onClick={onClickRealTimeCamera} className="text-xl font-semibold text-[#528FFE] underline underline-offset-2 hover:text-[#0047FF]">Real Time Camera</p>
+            </div>
           </div>
+          
           <div className="flex w-full gap-3">
             <button
               className="py-1 px-1.5 rounded-lg bg-[#F83030] hover:bg-[#DD2929] w-fit h-fit"

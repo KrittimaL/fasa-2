@@ -24,7 +24,12 @@ function AlertCard(props) {
         <button className="flex w-full flex-col p-4 gap-2" style={{ backgroundColor: alertDetail.status == false ? 'rgba(85, 144, 126, .2)' : '', borderRadius: notification ? '' : '0.25rem' }} onClick={goToAlertDetail}>
             <div className="flex w-full gap-2 items-center">
                 <div className="w-1.5 h-1.5 rounded-full bg-[#9B0032]"></div>
-                <p className="text-sm text-primary font-semibold">Alert#{alertDetail.id}</p>
+                <div className="flex w-full gap-2">
+                    <p className="text-sm text-primary font-semibold">Alert#{alertDetail.id}</p>
+                    {alertDetail.response ? (
+                        <p className="text-sm text-primary font-semibold">-{alertDetail.response}</p>
+                    ): null}
+                </div>
             </div>
             <div className="border border-[#637282] border-opacity-10 rounded px-1 py-2 gap-2 flex w-full items-center">
                 <LocationSvg />
