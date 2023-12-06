@@ -1,4 +1,5 @@
 import { useLocation, useNavigate } from "react-router";
+import { useEffect } from "react";
 import Header from "../components/header/header";
 import BackSvg from "../svgs/backSvg";
 
@@ -6,6 +7,12 @@ function RealTimeCamera() {
   const location = useLocation();
   const navigate = useNavigate();
   const alertDetail = location.state.alertDetail;
+
+  useEffect(()=>{
+    return () => {
+        socket.close()
+    }
+  }, [])
 
   const socket = new WebSocket("ws://54.206.23.65:8765");
 
