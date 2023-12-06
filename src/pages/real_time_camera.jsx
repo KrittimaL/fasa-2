@@ -8,11 +8,11 @@ function RealTimeCamera() {
   const navigate = useNavigate();
   const alertDetail = location.state.alertDetail;
 
-  useEffect(()=>{
+  useEffect(() => {
     return () => {
-        socket.close()
-    }
-  }, [])
+      socket.close();
+    };
+  }, []);
 
   const socket = new WebSocket("ws://54.206.23.65:8765");
 
@@ -25,9 +25,11 @@ function RealTimeCamera() {
   // Function to display the image on the webpage
   function displayImage(imageUrl) {
     imageUrl.text().then((txt) => {
-      document.getElementById(
-        "image"
-      ).src = `data:image/jpeg;charset=utf-8;base64,${txt}`;
+      if (document.getElementById("image")) {
+        document.getElementById(
+          "image"
+        ).src = `data:image/jpeg;charset=utf-8;base64,${txt}`;
+      }
     });
 
     // data:image/jpeg;charset=utf-8;base64,
