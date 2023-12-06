@@ -30,9 +30,12 @@ function Dashboard() {
 
   useEffect(() => {
     getCases();
-    setInterval(() => {
+    const polling = setInterval(() => {
       getCases();
     }, 2000);
+    return () => {
+      clearInterval(polling);
+    }
   }, []);
 
   // useEffect(() => {
