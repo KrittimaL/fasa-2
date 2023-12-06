@@ -10,39 +10,46 @@ function Dashboard() {
   const [cases, setCases] = useState([]);
 
   async function getCases() {
-    const response = await fetch(`http://ec2-54-206-23-65.ap-southeast-2.compute.amazonaws.com:3001/case/`);
+    const response = await fetch(
+      `http://ec2-54-206-23-65.ap-southeast-2.compute.amazonaws.com:3001/case/`
+    );
     if (!response.ok) {
       const message = `An error occurred: ${response.statusText}`;
       window.alert(message);
       return;
     }
-    const cases = await response.json();
-    setCases(cases);
+    const new_cases = await response.json();
+    if (cases !== new_cases) {
+      let checkUnread = new_cases.some((alert) => alert.status === false);
+      setUnreadAlert(checkUnread);
+      let checkRecent = new_cases.some((alert) => alert.status === true);
+      setRecentAlert(checkRecent);
+      setCases(new_cases);
+    }
   }
 
   useEffect(() => {
     getCases();
-  }, [cases.length]);
+    setInterval(() => {
+      getCases();
+    }, 2000);
+  }, []);
+
+  // useEffect(() => {
+  //   getCases();
+  // }, [cases.length]);
 
   async function markAsAllRead() {
-    const response = await fetch(`http://ec2-54-206-23-65.ap-southeast-2.compute.amazonaws.com:3001/allread/`);
+    const response = await fetch(
+      `http://ec2-54-206-23-65.ap-southeast-2.compute.amazonaws.com:3001/allread/`
+    );
     if (!response.ok) {
       const message = `An error occurred: ${response.statusText}`;
       window.alert(message);
       return;
     }
-    getCases()
+    getCases();
   }
-
-  useEffect(() => {
-    let checkUnread = cases.some((alert) => alert.status === false);
-    setUnreadAlert(checkUnread);
-  }, [cases]);
-
-  useEffect(() => {
-    let checkRecent = cases.some((alert) => alert.status === true);
-    setRecentAlert(checkRecent);
-  }, [cases]);
 
   return (
     <div className="flex flex-col w-full h-full">
